@@ -1,0 +1,1989 @@
+<html>
+<head>
+
+<title>Poker Levels</title>
+
+<!-- Meta -->
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+
+<!-- CSS -->
+<style type="text/css">
+
+body {
+color: #222;
+font-family: Helvetica;
+font-size: 18pt;
+text-align: center;
+background-image: url(bg.png);
+background-color: black;
+margin: auto;
+display: none;
+width: 100%;
+height: 100%;
+}
+
+h3 {
+display: inline;
+font-size: 75%;
+}
+
+form
+{
+margin: 0;
+padding: 0;
+}
+
+#container {
+width: 100%;
+height: 100%;
+}
+
+#header {
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#9B9C9C), to(#9B9C9C), color-stop(.5,#E3E3E3));
+border-color: #666;
+border-style: solid;
+padding: 2% 0 1% 0;
+border-width: 0 0 1px 0;
+height: 7.5%;
+margin-bottom: 2%;
+overflow: hidden;
+}
+
+#header img {
+display: inline;
+height: 80%;
+width: auto;
+}
+
+#header h1 {
+font-size: 100%;
+font-weight: bold;
+margin: 0 auto;
+padding: 10% 0;
+text-align: center;
+text-shadow: 0px 1px 0px #fff;
+display: inline;
+}
+
+ul {
+list-style: none;
+margin: 8px;
+padding: 0;
+width: 90%;
+margin: 2% 5%;
+}
+
+ul li {
+background-color: #FFF;
+border: 1px solid #999;
+color: #222;
+display: block;
+font-size: 75%;
+font-weight: bold;
+margin-bottom: -1px;
+padding: 6% 5%;
+text-decoration: none;
+text-align: left;
+}
+
+ul li button {
+font-size: 75%;
+margin: 0;
+padding: 0;
+font-weight: normal;
+}
+
+ul li span.float_right {
+float: right;
+}
+
+ul li span.blinds input {
+width: 35%;
+}
+
+ul li:first-child, #blindsdisplay_level4, #blindsdisplay_level7, #blindsdisplay_level10, #blindsdisplay_level13, #blindsdisplay_level16 {
+-webkit-border-top-left-radius: 8px;
+-webkit-border-top-right-radius: 8px;
+}
+
+ul li:last-child {
+-webkit-border-bottom-left-radius: 8px;
+-webkit-border-bottom-right-radius: 8px;
+}
+
+ul li.specialBorder {
+-webkit-border-bottom-left-radius: 8px;
+-webkit-border-bottom-right-radius: 8px;
+}
+
+ul li.just_one_child {
+-webkit-border-radius: 8px;
+text-align: center;
+}
+
+#content {
+padding: 10%;
+text-shadow: 0px 1px 0px #fff;
+}
+
+#content {
+color: blue;
+}
+
+input, button, select {
+width: 90%;
+font-size: 90%;
+margin-bottom: 2%;
+}
+
+#pausedLayover {
+color: black;
+font-size: 200%;
+position: absolute;
+top: 22.5%;
+width: 100%;
+text-align: center;
+display: none;
+z-index: 10;
+}
+
+#fullLayover
+{
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+background-color: white;
+opacity: 0.75;
+display: none;
+}
+
+input[type='checkbox'] {
+width: 25px;
+height: 25px;
+margin: 0;
+padding: 0;
+}
+
+#selectTimePerLevel
+{
+font-size: 150%;
+text-align: center;
+}
+
+#displayOfTheBlinds {
+display: none;
+}
+
+.blindsSmall {
+width: 100%;
+float: right;
+}
+
+.blindsBig {
+width: 100%;
+}
+
+#blindsdisplay_level1, #blindsdisplay_level2, #blindsdisplay_level3 
+{
+display: block;
+}
+
+#blindsdisplay_level4, #blindsdisplay_level5, #blindsdisplay_level6, #blindsdisplay_level7, #blindsdisplay_level8, #blindsdisplay_level9, #blindsdisplay_level10, #blindsdisplay_level11, #blindsdisplay_level12, #blindsdisplay_level13, #blindsdisplay_level14, #blindsdisplay_level15, #blindsdisplay_level16, #blindsdisplay_level17, #blindsdisplay_level18, #blindsdisplay_level19, #blindsdisplay_level20 {
+display: none;
+}
+
+#button_leveldisplay-selection button
+{
+width: 45%;
+font-size: 75%;
+}
+
+#button_showLessLevels, #button_reset
+{
+margin-right: 7.5%;
+}
+
+#button_leveldisplay-selection #button_showMoreLevels
+{
+margin-left: 52.5%;
+}
+
+#button_reset
+{
+display: none;
+}
+
+#button_showLessLevels
+{
+display: none;
+}
+
+button.levelChangeButtons
+{
+width: auto;
+font-size: 75%;
+margin: 0;
+padding: 0;
+margin-left: 5%;
+}
+
+#layover_confirm
+{
+z-index: 15;
+width: 80%;
+height: auto;
+background-color: white;
+border: 1px solid black;
+position: absolute;
+top: 15%;
+left: 10%;
+display: none;
+padding-bottom: 5%;
+}
+
+/* iPad specific changes to the stylesheet: */
+
+@media all and (min-device-width: 481px) {
+
+
+body
+{
+font-size: 50px;
+}
+
+input[type='checkbox']
+{
+width: 50px;
+height: 50px;
+}
+
+}
+
+</style>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="phonegap.js" charset="utf-8"></script>
+<script type="text/javascript" src="SAiOSAdPlugin.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+
+/* Init the whole app */
+
+function start() { document.addEventListener("deviceready",initialise,false); }
+
+/* Sets the language and changes the text to the adequate language */
+
+function setLanguage(language)
+{
+	switch(language)
+	{	
+		case "german":
+			displayLanguage = "german";
+			document.getElementById("text_option_5minutes").innerHTML = "5 Minuten";
+			document.getElementById("text_option_10minutes").innerHTML = "10 Minuten";
+			document.getElementById("text_option_15minutes").innerHTML = "15 Minuten";
+			document.getElementById("text_option_20minutes").innerHTML = "20 Minuten";
+			document.getElementById("text_option_25minutes").innerHTML = "25 Minuten";
+			document.getElementById("text_option_30minutes").innerHTML = "30 Minuten";
+			document.getElementById("text_option_35minutes").innerHTML = "35 Minuten";
+			document.getElementById("text_option_40minutes").innerHTML = "40 Minuten";
+			document.getElementById("text_option_45minutes").innerHTML = "45 Minuten";
+			document.getElementById("text_option_50minutes").innerHTML = "50 Minuten";
+			document.getElementById("text_option_55minutes").innerHTML = "55 Minuten";
+			document.getElementById("text_option_60minutes").innerHTML = "60 Minuten";
+			document.getElementById("text_startTimer").innerHTML = "Timer starten";
+			document.getElementById("text_setBlinds").innerHTML = "Blinds festlegen";
+			document.getElementById("text_settings").innerHTML = "Einstellungen";
+			document.getElementById("text_settings2").innerHTML = "Einstellungen";
+			document.getElementById("text_paused").innerHTML = "Pausiert";
+			document.getElementById("text_about").innerHTML = "Info";
+			document.getElementById("text_levelChangeNotification").innerHTML = "Benachrichtigung neues Level";
+			document.getElementById("text_beep").innerHTML = "Beep";
+			document.getElementById("text_vibrate").innerHTML = "Vibration";
+			document.getElementById("text_back").innerHTML = "Zur&uuml;ck";
+			document.getElementById("text_back2").innerHTML = "Zur&uuml;ck";
+			document.getElementById("text_back3").innerHTML = "Zur&uuml;ck";
+			document.getElementById("text_version").innerHTML = "Version";
+			document.getElementById("text_versionDate").innerHTML = "Versionsdatum";
+			document.getElementById("text_author").innerHTML = "Entwickler";
+			document.getElementById("text_website").innerHTML = "Webseite";
+			document.getElementById("text_contactTheAuthor").innerHTML = "Feedback";
+			document.getElementById("text_level").innerHTML = "Level";
+			document.getElementById("text_timePerLevel").innerHTML = "Zeit pro Level";
+			document.getElementById("text_timePerLevel2").innerHTML = "Zeit pro Level";
+			document.getElementById("text_totalTime").innerHTML = "Totale Zeit";
+			document.getElementById("text_timeToNextLevel").innerHTML = "Bis n&auml;chst. Level";
+			document.getElementById("text_pauseTimer").innerHTML = "Pause";
+			document.getElementById("text_gameFinished").innerHTML = "Spiel beenden";
+			document.getElementById("text_totalTime").innerHTML = "Totale Zeit";
+			document.getElementById("text_minutes").innerHTML = "Minuten";
+			document.getElementById("text_confirmation").innerHTML = "Best&auml;tigung";
+			document.getElementById("text_really_exit").innerHTML = "Wollen Sie das laufende Spiel wirklich beenden?";
+			document.getElementById("text_yes").innerHTML = "Ja";
+			document.getElementById("text_no").innerHTML = "Nein";
+		break;
+		
+		case "french":
+			displayLanguage = "french";
+			document.getElementById("text_option_5minutes").innerHTML = "5 minutes";
+			document.getElementById("text_option_10minutes").innerHTML = "10 minutes";
+			document.getElementById("text_option_15minutes").innerHTML = "15 minutes";
+			document.getElementById("text_option_20minutes").innerHTML = "20 minutes";
+			document.getElementById("text_option_25minutes").innerHTML = "25 minutes";
+			document.getElementById("text_option_30minutes").innerHTML = "30 minutes";
+			document.getElementById("text_option_35minutes").innerHTML = "35 minutes";
+			document.getElementById("text_option_40minutes").innerHTML = "40 minutes";
+			document.getElementById("text_option_45minutes").innerHTML = "45 minutes";
+			document.getElementById("text_option_50minutes").innerHTML = "50 minutes";
+			document.getElementById("text_option_55minutes").innerHTML = "55 minutes";
+			document.getElementById("text_option_60minutes").innerHTML = "60 minutes";
+			document.getElementById("text_startTimer").innerHTML = "Commencer le jeux"; 
+			document.getElementById("text_setBlinds").innerHTML = "D&eacute;finir les blinds";
+			document.getElementById("text_settings").innerHTML = "Pr&eacute;f&eacute;rences";
+			document.getElementById("text_settings2").innerHTML = "Pr&eacute;f&eacute;rences"; 
+			document.getElementById("text_paused").innerHTML = "Pause"; 
+			document.getElementById("text_about").innerHTML = "Info";
+			document.getElementById("text_levelChangeNotification").innerHTML = "Notification"; 
+			document.getElementById("text_beep").innerHTML = "Beep"; 
+			document.getElementById("text_vibrate").innerHTML = "Vibration";
+			document.getElementById("text_back").innerHTML = "Retourner"; 
+			document.getElementById("text_back2").innerHTML = "Retourner";
+			document.getElementById("text_back3").innerHTML = "Retourner";
+			document.getElementById("text_version").innerHTML = "Version";
+			document.getElementById("text_versionDate").innerHTML = "Date de version"; 
+			document.getElementById("text_author").innerHTML = "Developeur"; 
+			document.getElementById("text_website").innerHTML = "Website";
+			document.getElementById("text_contactTheAuthor").innerHTML = "Feedback"; 
+			document.getElementById("text_level").innerHTML = "Level";
+			document.getElementById("text_timePerLevel").innerHTML = "Temps par level"; 
+			document.getElementById("text_timePerLevel2").innerHTML = "Temps par level"; 
+			document.getElementById("text_totalTime").innerHTML = "Temps total"; 
+			document.getElementById("text_timeToNextLevel").innerHTML = "Temps jusq. proch. lvl";
+			document.getElementById("text_pauseTimer").innerHTML = "Pause"; 
+			document.getElementById("text_gameFinished").innerHTML = "Arreter le jeux"; 
+			document.getElementById("text_totalTime").innerHTML = "Temps totale";
+			document.getElementById("text_minutes").innerHTML = "minutes";
+			document.getElementById("text_confirmation").innerHTML = "Confirmation";
+			document.getElementById("text_really_exit").innerHTML = "Do you really want to exit?";
+			document.getElementById("text_yes").innerHTML = "Yes";
+			document.getElementById("text_no").innerHTML = "No";	
+		break;
+		
+		case "portugese":
+			displayLanguage = "portugese";
+			document.getElementById("text_option_5minutes").innerHTML = "5 minutos";
+			document.getElementById("text_option_10minutes").innerHTML = "10 minutos";
+			document.getElementById("text_option_15minutes").innerHTML = "15 minutos";
+			document.getElementById("text_option_20minutes").innerHTML = "20 minutos";
+			document.getElementById("text_option_25minutes").innerHTML = "25 minutos";
+			document.getElementById("text_option_30minutes").innerHTML = "30 minutos";
+			document.getElementById("text_option_35minutes").innerHTML = "35 minutos";
+			document.getElementById("text_option_40minutes").innerHTML = "40 minutos";
+			document.getElementById("text_option_45minutes").innerHTML = "45 minutos";
+			document.getElementById("text_option_50minutes").innerHTML = "50 minutos";
+			document.getElementById("text_option_55minutes").innerHTML = "55 minutos";
+			document.getElementById("text_option_60minutes").innerHTML = "60 minutos";
+			document.getElementById("text_startTimer").innerHTML = "Iniciar temporizador";
+			document.getElementById("text_setBlinds").innerHTML = "Definir blinds";
+			document.getElementById("text_settings").innerHTML = "Defini&ccedil;&otilde;es";
+			document.getElementById("text_settings2").innerHTML = "Defini&ccedil;&otilde;es";
+			document.getElementById("text_paused").innerHTML = "Pausar";
+			document.getElementById("text_about").innerHTML = "Sobre";
+			document.getElementById("text_levelChangeNotification").innerHTML = "Notifica&ccedil;&atilde;ode pr&oacute;ximo n&iacute;vel";
+			document.getElementById("text_beep").innerHTML = "Beep";
+			document.getElementById("text_vibrate").innerHTML = "Vibrar";
+			document.getElementById("text_back").innerHTML = "Atr&aacute;s";
+			document.getElementById("text_back2").innerHTML = "Atr&aacute;s";
+			document.getElementById("text_back3").innerHTML = "Atr&aacute;s";
+			document.getElementById("text_version").innerHTML = "Vers&atilde;o";
+			document.getElementById("text_versionDate").innerHTML = "Data da vers&atilde;o";
+			document.getElementById("text_author").innerHTML = "Developer";
+			document.getElementById("text_website").innerHTML = "Website";
+			document.getElementById("text_contactTheAuthor").innerHTML = "Feedback";
+			document.getElementById("text_level").innerHTML = "N&iacute;vel";
+			document.getElementById("text_timePerLevel").innerHTML = "Tempo por n&iacute;vel";
+			document.getElementById("text_timePerLevel2").innerHTML = "Tempo por n&iacute;vel";
+			document.getElementById("text_totalTime").innerHTML = "Tempo Total";
+			document.getElementById("text_timeToNextLevel").innerHTML = "Para pr&oacute;ximo n&iacute;vel";
+			document.getElementById("text_pauseTimer").innerHTML = "Pausa";
+			document.getElementById("text_gameFinished").innerHTML = "Finalizar jogo";
+			document.getElementById("text_totalTime").innerHTML = "Tempo Total";
+			document.getElementById("text_minutes").innerHTML = "minutos";
+			document.getElementById("text_confirmation").innerHTML = "Confirmation";
+			document.getElementById("text_really_exit").innerHTML = "Do you really want to exit?";
+			document.getElementById("text_yes").innerHTML = "Yes";
+			document.getElementById("text_no").innerHTML = "No";
+		break;
+		
+		default:
+			displayLanguage = "english";
+			document.getElementById("text_option_5minutes").innerHTML = "5 minutes";
+			document.getElementById("text_option_10minutes").innerHTML = "10 minutes";
+			document.getElementById("text_option_15minutes").innerHTML = "15 minutes";
+			document.getElementById("text_option_20minutes").innerHTML = "20 minutes";
+			document.getElementById("text_option_25minutes").innerHTML = "25 minutes";
+			document.getElementById("text_option_30minutes").innerHTML = "30 minutes";
+			document.getElementById("text_option_35minutes").innerHTML = "35 minutes";
+			document.getElementById("text_option_40minutes").innerHTML = "40 minutes";
+			document.getElementById("text_option_45minutes").innerHTML = "45 minutes";
+			document.getElementById("text_option_50minutes").innerHTML = "50 minutes";
+			document.getElementById("text_option_55minutes").innerHTML = "55 minutes";
+			document.getElementById("text_option_60minutes").innerHTML = "60 minutes";
+			document.getElementById("text_startTimer").innerHTML = "Start timer";
+			document.getElementById("text_setBlinds").innerHTML = "Set blinds";
+			document.getElementById("text_settings").innerHTML = "Settings";
+			document.getElementById("text_settings2").innerHTML = "Settings";
+			document.getElementById("text_paused").innerHTML = "Paused";
+			document.getElementById("text_about").innerHTML = "About";
+			document.getElementById("text_levelChangeNotification").innerHTML = "Level-up notification";
+			document.getElementById("text_beep").innerHTML = "Beep";
+			document.getElementById("text_vibrate").innerHTML = "Vibrate";
+			document.getElementById("text_back").innerHTML = "Back";
+			document.getElementById("text_back2").innerHTML = "Back";
+			document.getElementById("text_back3").innerHTML = "Back";
+			document.getElementById("text_version").innerHTML = "Version";
+			document.getElementById("text_versionDate").innerHTML = "Date";
+			document.getElementById("text_author").innerHTML = "Developer";
+			document.getElementById("text_website").innerHTML = "Website";
+			document.getElementById("text_contactTheAuthor").innerHTML = "Feedback";
+			document.getElementById("text_level").innerHTML = "Level";
+			document.getElementById("text_timePerLevel").innerHTML = "Time per level";
+			document.getElementById("text_timePerLevel2").innerHTML = "Time per level";
+			document.getElementById("text_totalTime").innerHTML = "Total time";
+			document.getElementById("text_timeToNextLevel").innerHTML = "Time to next level";
+			document.getElementById("text_pauseTimer").innerHTML = "Pause";
+			document.getElementById("text_gameFinished").innerHTML = "Finish game";
+			document.getElementById("text_totalTime").innerHTML = "Total time";
+			document.getElementById("text_minutes").innerHTML = "minutes";
+			document.getElementById("text_confirmation").innerHTML = "Confirmation";
+			document.getElementById("text_really_exit").innerHTML = "Do you really want to exit?";
+			document.getElementById("text_yes").innerHTML = "Yes";
+			document.getElementById("text_no").innerHTML = "No";
+		break;
+	}
+	
+}
+
+
+
+
+/* Scrolling is disabled unless disable scrolling is set to 0 */
+
+disableScrolling = 1;
+
+touchMove = function(event)
+{
+	if(disableScrolling===1)
+	{
+		event.preventDefault();
+	}
+}
+
+
+/* This is the function that is called when the app is launched. It handles a few basic settings such as the
+language and the greeting and then displays the "index"-view */
+
+function initialise()
+{
+	/* Detect the "name" of the device & deactivate vibrate option if the device isn't an iPhone */
+	
+	deviceName = device.platform;
+	
+	var case1 = deviceName.indexOf("iPod");
+	var case2 = deviceName.indexOf("IPOD");
+	var case3 = deviceName.indexOf("ipod");
+	var case4 = deviceName.indexOf("ipad");
+	var case5 = deviceName.indexOf("iPad");
+	var case6 = deviceName.indexOf("IPAD");
+	
+	if(case1 != -1 || case2 != -1 || case3 != -1 || case4 != -1 || case5 != -1 || case6 != -1)
+	{
+		document.getElementById("vibratefield").style.display = "none";
+		document.getElementById("specialBorder").className = "specialBorder";
+	}
+	
+	/* Detects the language and calls the function to change it */
+	
+	var detected_language = navigator.language.split("-")[0];
+	
+	switch(detected_language)
+	{
+		case "de":
+			setLanguage("german");
+		break;
+			
+		case "fr":
+			setLanguage("french");
+		break;
+			
+		case "pt":
+			setLanguage("portugese");
+		break;
+			
+		default:
+			setLanguage("english");
+		break;
+	}
+	
+	/* Displays a message if the application is launched for the first time. Then te localstorage is updated
+	with the information that the app has been launched for the first time. */
+	
+	if(localStorage.getItem('pokerlevels_first-launch-done') == null)
+	{
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Vielen Dank f" + unescape("%FC") + "r die Installation von" +
+				" 'Simple Poker Blinds Timer'!\n" +
+				" Damit der 'Alarm' beim Erreichen der n" + unescape("%E4") +"chsten Blindstufe funktioniert,"+
+				" sollten Sie den Bildschirm nicht sperren.";
+				var title = "Willkommen!";
+				var button = "OK";
+				break;
+				
+			case "french":
+				var msg = "In order for this application to function properly, please don't lock the" + 
+				" screen when the timer is running. Otherwise the application won't be able to notify you" +
+				" when the level changes. Have fun!";
+				var title = "Welcome!";
+				var button = "OK";
+				break;
+				
+			case "portugese":
+				var msg = "In order for this application to function properly, please don't lock the" + 
+				" screen when the timer is running. Otherwise the application won't be able to notify you" +
+				" when the level changes. Have fun!";
+				var title = "Welcome!";
+				var button = "OK";
+				break;
+			
+			default:
+				var msg = "In order for this application to function properly, please don't lock the" + 
+				" screen when the timer is running. Otherwise the application won't be able to notify you" +
+				" when the level changes. Have fun!";
+				var title = "Welcome!";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+		
+		setLocalStorageV('pokerlevels_first-launch-done', 'true');
+		setLocalStorageV('pokerlevels_update1-first-launch-done', 'true');
+		setLocalStorageV('pokerlevels_update2-first-launch-done', 'true');
+	}
+	else if(localStorage.getItem('pokerlevels_update2-first-launch-done') == null)
+	{
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Vielen Dank f" + unescape("%FC") + "r die Installation des Updates von" +
+				" 'Simple Poker Blinds Timer'!\n"+
+				" Falls Sie irgendwelche Fragen oder Feedback haben, w" +unescape("%E4") + "hren wir sehr" +
+				" froh, wenn Sie uns dies mit dem 'Feedback'-Button mitteilen w" + unescape("%FC") + "rden." +
+				" Vielen Dank!";
+				var title = "Willkommen!";
+				var button = "OK";
+				break;
+				
+			default:
+				var msg = "Thanks for installing the update! \n If you have any kind of question or feedback,"+
+				" we'd be happy to hear from you! Just click on the 'Feedback' button in the 'About' section!";
+				var title = "Welcome!";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+		setLocalStorageV('pokerlevels_update2-first-launch-done', 'true');
+	}
+	else if(localStorage.getItem('pokerlevels_numberOfLaunches') == null)
+	{
+	
+		setLocalStorageV("pokerlevels_numberOfLaunches", 1);
+	
+	}
+	else if(localStorage.getItem('pokerlevels_numberOfLaunches') == 1)
+	{	
+		var launches = localStorage.getItem('pokerlevels_numberOfLaunches');
+		var launches = parseInt(launches) + 1;		
+		setLocalStorageV("pokerlevels_numberOfLaunches", launches);
+		
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Wenn die App unterbrochen wird, zum Beispiel wenn ein Anruf eingeht, lŠuft der Timer im Hintergrund weiter! " +
+				"Beim nŠchsten Start der App wird dann immer noch die richtige Zeit angezeigt.";
+				var title = "Haben Sie gewusst?";
+				var button = "OK";
+				break;
+			
+			default:
+				var msg = "If the app gets closed, for example when a call is received, the timer continues to run in the background. " +
+				"Simply restart the app to continue the game!";
+				var title = "Did you know?";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+		
+	}
+	else if(localStorage.getItem('pokerlevels_numberOfLaunches') == 3)
+	{	
+		var launches = localStorage.getItem('pokerlevels_numberOfLaunches');
+		var launches = parseInt(launches) + 1;	
+		setLocalStorageV("pokerlevels_numberOfLaunches", launches);
+		
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Nach einer Weile wird wŠhrend einem Spiel ein Teil des Bildschirms dunkel. Dies hilft Energie zu sparen, und der Akku "+
+				"wird weniger schnell geleert!";
+				var title = "Haben Sie gewusst?";
+				var button = "OK";
+				break;
+			
+			default:
+				var msg = "When you're in a game, after a while part of the screen gets dark. "
+				+ "This is to preserve energy and to make the battery last longer!";
+				var title = "Did you know?";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+	}
+	else if(localStorage.getItem('pokerlevels_numberOfLaunches') == 5)
+	{	
+		var launches = localStorage.getItem('pokerlevels_numberOfLaunches');
+		var launches = parseInt(launches) + 1;	
+		setLocalStorageV("pokerlevels_numberOfLaunches", launches);
+		
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Leider ist es nicht mšglich, den Bildschirm wŠhrend dem Spiel zu sperren, da ansonsten die Benachrichtigung beim "+
+				"erreichen eines neuen Levels nicht mšglich ist.";
+				var title = "Haben Sie gewusst?";
+				var button = "OK";
+				break;
+			
+			default:
+				var msg = "Unfortunately it's not possible to lock the screen during a game, because the notification when a new level is "+
+				"reached wouldn't be possible.";
+				var title = "Did you know?";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+	}
+	else if(localStorage.getItem('pokerlevels_numberOfLaunches') == 15)
+	{	
+		var launches = localStorage.getItem('pokerlevels_numberOfLaunches');
+		var launches = parseInt(launches) + 1;	
+		setLocalStorageV("pokerlevels_numberOfLaunches", launches);
+		
+		switch(displayLanguage)
+		{
+			case "german":
+				var msg = "Sie haben 'Simple Poker Blinds Timer' schon ein paar mal gebraucht, falls Ihnen die App zusagt, w" + unescape("%FC") + "rden wir uns sehr " + unescape("%FC") + "ber eine positive Bewertung im App Store freuen! \n Vielen Dank und weiterhin viel Spass. ;)";
+				var title = "Vielen Dank!";
+				var button = "OK";
+				break;
+			
+			default:
+				var msg = "You have used 'Simple Poker Blind Timer' for some time now. If you like this app, please consider leaving feedback"+
+				" in the App Store! Thank you and have fun playing. ;)";
+				var title = "Thank you!";
+				var button = "OK";
+				break;
+		}
+		
+		navigator.notification.alert(msg, title, button);
+	}
+	else
+	{	
+		var launches = localStorage.getItem('pokerlevels_numberOfLaunches');
+		var launches = parseInt(launches) + 1;	
+		setLocalStorageV("pokerlevels_numberOfLaunches", launches);
+	}
+			
+	/* Finally, display the "index"-view */
+	
+	displayBody();
+	
+}
+
+function displayBody()
+{
+	
+	/* Checks if the user has previously selected a time-per-level that has been saved in the localstorage.
+	If not, the default value is selected. */
+	
+	if(localStorage.getItem('pokerlevels_selectTimePerLevel') !== undefined)
+	{
+		document.time.selectTimePerLevel.selectedIndex =
+		localStorage.getItem('pokerlevels_selectTimePerLevel');
+	}
+	else
+	{
+		document.time.selectTimePerLevel.selectedIndex = 2; // Default value = Option 2 = 15 Min
+	}
+	
+	/* Checks the localstorage for previous checkbox settings & applies them */
+	
+	if(localStorage.getItem('pokerlevels_notificationBeep') == 'checked')
+	{ 
+		document.notifications.beep.checked = true;
+	}
+	if(localStorage.getItem('pokerlevels_notificationVibrate') == 'checked')
+	{ 
+		document.notifications.vibrate.checked = true;
+	}
+	
+	/* Checks the localstorage for previous blind-settings and displays them in the adequate field */
+	
+	for(var i = 1; i < 21; i++) 
+	{
+		document.getElementById("level" + i + "Small").value =
+		localStorage.getItem("pokerlevels_blindsLevel"+i+"Small");
+		document.getElementById("level" + i + "Big").value =
+		localStorage.getItem("pokerlevels_blindsLevel"+i+"Big"); 
+	}
+	
+	/* Why is this here?! */
+	
+	resetAllVariables();
+	
+	/* If there's a "started at"-timestamp still saved in the localstorage, that means that there's a previous,
+	unfinished game. If that's the case this game is then resumed. */
+	
+	timeStampAtStart = localStorage.getItem('pokerlevels_timeStampAtStart');
+	
+	if(timeStampAtStart == null || timeStampAtStart == "")
+	{
+		/* Do nothing here, no previous game detected */
+	}
+	else
+	{
+		startTheTimer();
+		openLink("content_startingscreen", "content_timer");
+		dimTheScreen();
+		
+		var gameWasResumedOnce = localStorage.getItem('gameWasResumedOnce');
+		
+		if(gameWasResumedOnce != null) {
+		
+			// Do nothing here
+		
+		}
+		else {
+		
+			gameWasResumendAlert();
+			
+			setLocalStorageV('gameWasResumedOnce', true);
+			
+		}
+		
+	}
+	
+	/* Finally, show the body */
+	
+	document.body.style.display = 'block';
+}
+
+
+function gameWasResumendAlert()
+{
+
+	switch(displayLanguage)
+	{
+		case "german":
+			var msg = "Sie haben die App w"+unescape('%E4')+"hrend einem laufenden Spiel beendet. Das Spiel lief dabei im Hintergrund weiter," +
+			" und wird nun fortgesetzt.";
+			var title = "Hinweis";
+			var button = "OK";
+			break;
+		
+		default:
+			var msg = "You quit the app during a game. The timer kept running in the background and your game is now resumed!";
+			var title = "Notice";
+			var button = "OK";
+			break;
+	}
+	
+	navigator.notification.alert(msg, title, button);
+
+}
+
+/* This function is called when a link is clicked. The target is then revealed and the origin is hidden. */
+
+function openLink(origin, target)
+{
+	/* Special case: When exiting the "settings"-view during an active game, the target is set to the timer.
+	The standart behaviour here would be to go back to the "index"-view. But obviously we want to go back into
+	the game that's running (= content_timer view). */
+	
+	if(origin == "content_settings" && target == "content_startingscreen")
+	{
+		if(gameIsActive == 1 || gameIsPaused == 1)
+		{
+			target = "content_timer";
+		}
+	}
+
+	/* Special case: When exiting the "blinds"-view during an active game, the target is set to the timer.
+	Same as above. */
+		
+	if(origin == "content_blinds" && target == "content_settings")
+	{
+		if(origin == 1 || target == 1)
+		{
+			target = "content_timer";
+		}
+	}
+	
+	document.getElementById(origin).style.display = 'none';
+	document.getElementById(target).style.display = 'block';
+}
+
+/* Resets all known variables */
+
+function resetAllVariables()
+{
+	gameIsActive = 0;
+	gameIsPaused = 0;
+	level = 1;
+	minutesPerLevel = 0;
+	secondsPerLevel = 0;
+	timeInterval = 0;
+	timeStampRightNow = 0;
+	secondsSinceStart = 0;
+	minutesSinceStart = 0;
+	secondsSinceStart_minusMinutes = 0;
+	secondsOnThisLevel = 0;
+	minutesOnThisLevel = 0;
+	secondsOnThisLevel_minusMinutes = 0;
+	secondsToNextLevel = 0;
+	minutesToNextLevel = 0;
+	secondsToNextLevel_minusMinutes = 0;
+	timeStamp_pause_start = 0;
+	timePausedFor = 0;
+	timeStampPauseRightNow = 0;
+	secondsPaused = 0;
+	minutesPaused = 0;
+	secondsPaused_minusMinutes = 0;
+	pausedTimeInSeconds = 0;
+}
+
+/* Updates the localstorage value of the setting that's provided */
+
+function setLocalStorage(setting)
+{
+	switch(setting)
+	{
+		case "timePerLevel":
+			setLocalStorageV('pokerlevels_selectTimePerLevel',
+			document.time.selectTimePerLevel.selectedIndex);
+			break;
+			
+		case "notificationBeep":
+			if(document.notifications.beep.checked) { val = "checked"; } else { val = "unchecked"; }
+			setLocalStorageV('pokerlevels_notificationBeep', val);
+			break;
+			
+		case "notificationVibrate":
+			if(document.notifications.vibrate.checked) { val = "checked"; } else { val = "unchecked"; }
+			setLocalStorageV('pokerlevels_notificationVibrate', val);
+			break;
+	}
+}
+
+/* Saves the current blinds-setting. */
+
+function saveBlinds()
+{	
+	for(var i = 1; i < 21; i++)
+	{
+		var smallb = document.getElementById("level" + i + "Small").value;
+		setLocalStorageV("pokerlevels_blindsLevel" + i + "Small",smallb);
+		
+		setLocalStorageV("pokerlevels_blindsLevel" + i + "Big",
+		document.getElementById("level" + i + "Big").value);
+	}
+		
+	/* If the user svs the blinds during an act. game, the blind for the momentive level has to be adjusted */
+	
+	if(gameIsActive == 1 || gameIsPaused == 1)
+	{
+		var smallBlindRightNow = document.getElementById("level" + level + "Small").value;
+		var bigBlindRightNow = document.getElementById("level" + level + "Big").value;
+		
+		document.getElementById("smallBlind").innerHTML = smallBlindRightNow;
+		document.getElementById("bigBlind").innerHTML = bigBlindRightNow;
+		
+		if(smallBlindRightNow == '' || smallBlindRightNow === null || smallBlindRightNow === undefined) {
+			document.getElementById('displayOfTheBlinds').style.display = 'none';
+		}
+		else
+		{
+			document.getElementById('displayOfTheBlinds').style.display = 'block';
+		}
+	}
+}
+
+/* Empties the input for the blind-levels, when the user clicks on the reset button. */
+
+function resetAllBlinds()
+{
+	for(var i = 1; i < 21; i++)
+	{
+		document.getElementById("level" + i + "Small").value = '';
+		document.getElementById("level" + i + "Big").value = '';
+	}
+	
+	saveBlinds();
+}
+
+/* Sets the display of the blinds input-fields */
+
+levelSetBeingShown = 1;
+
+function showMoreLevels()
+{	
+	if(levelSetBeingShown == 1)
+	{
+		document.getElementById("blindsdisplay_level1").style.display = "none";
+		document.getElementById("blindsdisplay_level2").style.display = "none";
+		document.getElementById("blindsdisplay_level3").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level4").style.display = "block";
+		document.getElementById("blindsdisplay_level5").style.display = "block";
+		document.getElementById("blindsdisplay_level6").style.display = "block";
+		
+		document.getElementById("button_reset").style.display = "none";
+		document.getElementById("button_showLessLevels").style.display = "inline";
+		
+		document.getElementById("button_showMoreLevels").style.marginLeft = "0";
+		
+		levelSetBeingShown = 2;
+	}
+	else if(levelSetBeingShown == 2)
+	{
+		document.getElementById("blindsdisplay_level4").style.display = "none";
+		document.getElementById("blindsdisplay_level5").style.display = "none";
+		document.getElementById("blindsdisplay_level6").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level7").style.display = "block";
+		document.getElementById("blindsdisplay_level8").style.display = "block";
+		document.getElementById("blindsdisplay_level9").style.display = "block";
+		
+		levelSetBeingShown = 3;
+	}
+	else if(levelSetBeingShown == 3)
+	{
+		document.getElementById("blindsdisplay_level7").style.display = "none";
+		document.getElementById("blindsdisplay_level8").style.display = "none";
+		document.getElementById("blindsdisplay_level9").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level10").style.display = "block";
+		document.getElementById("blindsdisplay_level11").style.display = "block";
+		document.getElementById("blindsdisplay_level12").style.display = "block";
+		
+		levelSetBeingShown = 4;
+	}
+	else if(levelSetBeingShown == 4)
+	{
+		document.getElementById("blindsdisplay_level10").style.display = "none";
+		document.getElementById("blindsdisplay_level11").style.display = "none";
+		document.getElementById("blindsdisplay_level12").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level13").style.display = "block";
+		document.getElementById("blindsdisplay_level14").style.display = "block";
+		document.getElementById("blindsdisplay_level15").style.display = "block";
+		
+		levelSetBeingShown = 5;
+	}
+	else if(levelSetBeingShown == 5)
+	{
+		document.getElementById("blindsdisplay_level13").style.display = "none";
+		document.getElementById("blindsdisplay_level14").style.display = "none";
+		document.getElementById("blindsdisplay_level15").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level16").style.display = "block";
+		document.getElementById("blindsdisplay_level17").style.display = "block";
+		document.getElementById("blindsdisplay_level18").style.display = "block";
+		
+		levelSetBeingShown = 6;
+	}
+	else if(levelSetBeingShown = 6)
+	{
+		document.getElementById("blindsdisplay_level16").style.display = "none";
+		document.getElementById("blindsdisplay_level17").style.display = "none";
+		document.getElementById("blindsdisplay_level18").style.display = "none";
+		
+		document.getElementById("blindsdisplay_level18").style.display = "block";
+		document.getElementById("blindsdisplay_level19").style.display = "block";
+		document.getElementById("blindsdisplay_level20").style.display = "block";
+		
+		document.getElementById("button_showMoreLevels").style.display = "none";
+	}
+}
+
+function showLessLevels()
+{	
+	if(levelSetBeingShown == 2)
+	{
+		document.getElementById("blindsdisplay_level1").style.display = "block";
+		document.getElementById("blindsdisplay_level2").style.display = "block";
+		document.getElementById("blindsdisplay_level3").style.display = "block";
+		
+		document.getElementById("blindsdisplay_level4").style.display = "none";
+		document.getElementById("blindsdisplay_level5").style.display = "none";
+		document.getElementById("blindsdisplay_level6").style.display = "none";
+		
+		document.getElementById("button_reset").style.display = "none";
+		document.getElementById("button_showLessLevels").style.display = "none";
+		
+		document.getElementById("button_showMoreLevels").style.marginLeft = "52.5%";
+		
+		levelSetBeingShown = 1;
+	}
+	else if(levelSetBeingShown == 3)
+	{
+		document.getElementById("blindsdisplay_level4").style.display = "block";
+		document.getElementById("blindsdisplay_level5").style.display = "block";
+		document.getElementById("blindsdisplay_level6").style.display = "block";
+		
+		document.getElementById("blindsdisplay_level7").style.display = "none";
+		document.getElementById("blindsdisplay_level8").style.display = "none";
+		document.getElementById("blindsdisplay_level9").style.display = "none";
+		
+		levelSetBeingShown = 2;
+	}
+	else if(levelSetBeingShown == 4)
+	{
+		document.getElementById("blindsdisplay_level7").style.display = "block";
+		document.getElementById("blindsdisplay_level8").style.display = "block";
+		document.getElementById("blindsdisplay_level9").style.display = "block";
+		
+		document.getElementById("blindsdisplay_level10").style.display = "none";
+		document.getElementById("blindsdisplay_level11").style.display = "none";
+		document.getElementById("blindsdisplay_level12").style.display = "none";
+		
+		levelSetBeingShown = 3;
+	}
+	else if(levelSetBeingShown == 5)
+	{
+		document.getElementById("blindsdisplay_level10").style.display = "block";
+		document.getElementById("blindsdisplay_level11").style.display = "block";
+		document.getElementById("blindsdisplay_level12").style.display = "block";
+		
+		document.getElementById("blindsdisplay_level13").style.display = "none";
+		document.getElementById("blindsdisplay_level14").style.display = "none";
+		document.getElementById("blindsdisplay_level15").style.display = "none";
+		
+		levelSetBeingShown = 4;
+	}
+	else if(levelSetBeingShown == 6)
+	{
+		document.getElementById("blindsdisplay_level13").style.display = "block";
+		document.getElementById("blindsdisplay_level14").style.display = "block";
+		document.getElementById("blindsdisplay_level15").style.display = "block";
+		
+		document.getElementById("blindsdisplay_level16").style.display = "none";
+		document.getElementById("blindsdisplay_level17").style.display = "none";
+		document.getElementById("blindsdisplay_level18").style.display = "none";
+		document.getElementById("blindsdisplay_level19").style.display = "none";
+		document.getElementById("blindsdisplay_level20").style.display = "none";
+		
+		document.getElementById("button_showMoreLevels").style.display = "inline";
+		
+		levelSetBeingShown = 5;
+	}
+}
+
+/* Starts the timer interval which then calls updateTime() every second */
+
+function startTheTimer()
+{
+		gameIsActive = 1;
+
+		levelUpCounter = localStorage.getItem("pokerlevels_levelUpCounter");
+		
+		if(levelUpCounter == null)
+		{
+			levelUpCounter = 1;
+		}
+
+		minutesPerLevel = document.getElementById("selectTimePerLevel").value;		
+		secondsPerLevel = minutesPerLevel * 60;
+		document.getElementById("timePerLevel").innerHTML = minutesPerLevel;
+		
+		var smallBlind = localStorage.getItem("pokerlevels_blindsLevel" + level + "Small");
+		var bigBlind = localStorage.getItem("pokerlevels_blindsLevel" + level + "Big");
+		
+		document.getElementById("smallBlind").innerHTML = smallBlind;
+		document.getElementById("bigBlind").innerHTML = bigBlind;
+		
+		if(smallBlind == '' || smallBlind === null || smallBlind === undefined)
+		{
+			document.getElementById('displayOfTheBlinds').style.display = 'none';
+		}
+		else
+		{
+			document.getElementById('displayOfTheBlinds').style.display = 'block';
+		}
+		
+	
+		timeStampAtStart = localStorage.getItem('pokerlevels_timeStampAtStart');
+		
+		if(timeStampAtStart === null || timeStampAtStart == '' || timeStampAtStart === undefined)
+		{
+			var timeStamp = new Date();
+			timeStampAtStart = timeStamp.getTime();
+			setLocalStorageV('pokerlevels_timeStampAtStart', timeStampAtStart);
+		}
+		
+		timeInterval = window.setInterval("updateTime()", 1000);
+}
+
+/* Updates the time since the beginning by subtracting the ts at the start from the ts of this second */
+
+function updateTime()
+{
+	if(gameIsActive == 1)
+	{
+		var timeStamp = new Date();
+
+		var timeStampRightNow = timeStamp.getTime();
+
+		var secondsSinceStart = Math.round(((timeStampRightNow-timeStampAtStart)/1000)-pausedTimeInSeconds);
+		
+		var minutesSinceStart = Math.floor((secondsSinceStart / 60));
+		
+		
+		var secondsSinceStart_minusMinutes = secondsSinceStart - (60*minutesSinceStart);
+		
+		
+		document.getElementById("timer").innerHTML = minutesSinceStart + "m " + 
+		secondsSinceStart_minusMinutes + "s";
+		
+		var level = Math.floor((secondsSinceStart / secondsPerLevel) + 1);
+		level = parseInt(level);
+		getLevel = parseInt(level);
+		
+		document.getElementById("level").innerHTML = level;
+				
+		var secondsOnThisLevel = secondsSinceStart - ((level-1)*secondsPerLevel);
+		
+		var minutesOnThisLevel = Math.floor(secondsOnThisLevel/60);
+		
+		
+		var secondsOnThisLevel_minusMinutes = secondsOnThisLevel - (60*minutesOnThisLevel);
+		
+		var secondsToNextLevel = secondsPerLevel - secondsOnThisLevel;
+		
+		var minutesToNextLevel = Math.floor(secondsToNextLevel/60);
+		
+		var secondsToNextLevel_minusMinutes = secondsToNextLevel - 
+		(60*minutesToNextLevel);
+		
+		document.getElementById("timernextlevel").innerHTML =
+		minutesToNextLevel + "m " + secondsToNextLevel_minusMinutes + "s ";
+			
+		smallBlind = localStorage.getItem("pokerlevels_blindsLevel" + level + "Small");
+		bigBlind = localStorage.getItem("pokerlevels_blindsLevel" + level + "Big");
+	
+		document.getElementById("smallBlind").innerHTML = smallBlind;
+		document.getElementById("bigBlind").innerHTML = bigBlind;
+	
+		
+		if(smallBlind == '' || smallBlind === null || smallBlind === undefined)
+		{
+			document.getElementById('displayOfTheBlinds').style.display = 'none';
+		}
+		else
+		{
+			document.getElementById('displayOfTheBlinds').style.display = 'block';
+		}
+	
+		
+		if(secondsPerLevel <= (secondsOnThisLevel+1))
+		{		
+			levelUp();
+			
+			if(levelUpCounter == 0)
+			{
+				levelUpCounter = 2;
+			} else
+			{
+				levelUpCounter++;
+			}
+			
+			setLocalStorageV("pokerlevels_levelUpCounter", levelUpCounter);
+		}
+		
+		if(levelUpCounter !== undefined || levelUpCounter !== null)
+		{
+			if(levelUpCounter < level)
+			{
+				levelUpCounter = level;
+				levelUp();
+			
+				setLocalStorageV("pokerlevels_levelUpCounter", levelUpCounter);
+			}	
+		}
+	
+		switch(minutesToNextLevel)
+		{
+			case 4:
+				textcolor = "5C0101";
+				break;
+			
+			case 3:
+				textcolor = "970000";
+				break;
+			
+			case 2:
+				textcolor = "BB0000";
+				break;
+				
+			case 1:
+				textcolor = "DF0000";
+				break;
+			
+			case 0:
+				textcolor = "FF0000";
+				break;
+				
+			default:
+				textcolor = "black";
+				break;
+		}
+	
+		document.getElementById("timernextlevel").style.color = textcolor;
+		
+	}
+}
+
+
+function levelUp()
+{
+	
+	if(document.notifications.beep.checked) { playABeepSound(); } // Beepton
+
+	if(document.notifications.vibrate.checked) { vibrateTheDevice(); } // Vibration
+}
+
+function toggleactive()
+{
+	if(gameIsActive == 1) {
+		pauseStart(); }
+	else {			
+		pauseStop(); }	
+}
+
+function pauseStart()
+{
+	
+	gameIsActive = 0;
+	gameIsPaused = 1;
+	var newdate = new Date();
+	timeStamp_pause_start = newdate.getTime();
+	document.getElementById("timerul").style.opacity = '.25';
+	document.getElementById("pausedLayover").style.display = 'block';
+	if(displayLanguage == "german") {
+		document.getElementById("text_pauseTimer").innerHTML = "Fortsetzen"; }
+	else if(displayLanguage == "portugese") {
+		document.getElementById("text_pauseTimer").innerHTML = "Resumir"; }
+	else {
+		document.getElementById("text_pauseTimer").innerHTML = "Resume"; }
+		
+	
+	timePausedFor = window.setInterval("updateTimePause()", 1000);	
+
+}
+
+function pauseStop()
+{
+	
+	gameIsActive = 1;
+	gameIsPaused = 0;
+	
+	pausedTimeInSeconds = pausedTimeInSeconds + secondsPaused;
+	
+	secondsPaused = 0;
+	window.clearInterval(timePausedFor);
+
+	document.getElementById("pausedtime").innerHTML = "0m 0s";
+	document.getElementById("active").innerHTML = "";
+	document.getElementById("timerul").style.opacity = '1';
+	document.getElementById("pausedLayover").style.display = 'none';
+	document.getElementById("text_pauseTimer").innerHTML = "Pause";
+
+}
+
+function updateTimePause()
+{
+	if(gameIsPaused == 1)
+	{	
+		var newdate = new Date();
+		timeStampPauseRightNow = newdate.getTime();
+		
+		secondsPaused = Math.round((timeStampPauseRightNow - timeStamp_pause_start)/1000);
+		
+		minutesPaused = (Math.floor(secondsPaused / 60));
+		
+		secondsPaused_minusMinutes = (secondsPaused - (60*minutesPaused));
+				
+		document.getElementById("pausedtime").innerHTML =
+		minutesPaused + "m " + secondsPaused_minusMinutes + "s";
+	}
+}
+
+
+function finish_game()
+{
+	document.getElementById("layover_confirm").style.display = "block";
+	document.getElementById("fullLayover").style.display = "block";
+	
+}
+
+function dontExit()
+{
+	document.getElementById("layover_confirm").style.display = "none";
+	document.getElementById("fullLayover").style.display = "none";
+}
+
+function reallyExit()
+{
+
+	document.getElementById("layover_confirm").style.display = "none";
+	document.getElementById("fullLayover").style.display = "none";
+
+	pauseStop();
+	
+	
+	gameIsActive = 0;
+	window.clearInterval(timeInterval);
+	window.clearInterval(timePausedFor);
+	resetAllVariables();
+	
+	setLocalStorageV('pokerlevels_timeStampAtStart', "");
+	
+			
+	setLocalStorageV("pokerlevels_levelUpCounter", null);
+	
+	openLink("content_timer", "content_startingscreen");
+	
+	
+	document.getElementById("level").innerHTML = "1";
+	document.getElementById("timer").innerHTML = "0m 0s";
+	document.getElementById("timernextlevel").innerHTML = "0m 0s";
+}
+
+function vibrateTheDevice()
+{
+	navigator.notification.vibrate(1);
+}
+
+function playABeepSound()
+{
+	navigator.notification.beep();
+}
+
+// Function that handles the value of input fields that contain their description as default value
+function clearDefaultValue(obj, mode)
+{
+	if(mode == 2)
+	{
+		if(obj.value == "")
+		{
+			document.getElementById("text_yourEmail").style.color = "grey";
+			obj.value = oldValue;
+			obj.style.fontStyle = "italic";
+			oldValue = "";
+		}
+	}
+	else
+	{
+		document.getElementById("text_yourEmail").value = "";
+		document.getElementById("text_yourEmail").style.color = "black";
+		
+		oldValue = obj.value;
+		var fontStyle = obj.style.fontStyle;	
+		if(fontStyle == "italic")
+		{
+			obj.value = "";
+			obj.style.fontStyle = "inherit";
+		}
+	}
+}
+
+
+function changeLevel(mode)
+{
+	var currentLevel = getLevel;
+	
+	if(mode == "next")
+	{
+		newLevel = currentLevel;
+	}
+	else
+	{
+		newLevel = currentLevel - 2;
+	}
+	
+	if(newLevel == -1)
+	{
+		newLevel = 0;
+	}
+	
+	var ts = new Date();
+	var timeStampNow = ts.getTime();
+	
+	timeStampAtStart  = timeStampNow - newLevel*secondsPerLevel*1000;
+}
+
+// This function is fired everytime the user touches the screen, it is used to dim the screen if that setting is enabled and to undim the screen
+function touch()
+{
+	if(typeof countdownToDim != "undefined")
+	{
+		window.clearInterval(countdownToDim);
+	}
+	
+	// The screen opacity has to be set to 1 again, no diming
+	unDimTheScreen();
+	
+	// This starts a countdown to 2 minutes when the screen will be dimmed
+	countdownToDim = window.setInterval("dimTheScreen()", 15000);
+}
+
+// This dims the screen
+function dimTheScreen()
+{
+	if(document.getElementById("content_timer").style.display == 'block')
+	{
+		document.getElementById("header").style.width = '1px';
+		document.getElementById("header").style.background = 'none';
+		document.getElementById("header").style.backgroundColor = 'black';
+		document.getElementById("header").style.borderBottom = 'none';
+		document.getElementById("body").style.backgroundImage = 'none';
+		document.getElementById("hideTheseOnDim").style.display = 'none';
+	}
+}
+
+// This undims the screen
+function unDimTheScreen()
+{	
+	document.getElementById("header").style.width = '100%';
+	document.getElementById("header").style.background = "-webkit-gradient(linear, 0% 0%, 0% 100%, from(#9B9C9C), to(#9B9C9C), color-stop(.5,#E3E3E3))";
+	document.getElementById("header").style.borderBottom = '1px solid gray';
+	document.getElementById("body").style.backgroundImage = 'url(bg.png)';
+	document.getElementById("hideTheseOnDim").style.display = 'block';
+}
+
+/***************************************************************************************************
+ *
+ *
+ * Saves something to the LS
+ *
+ *
+ ***************************************************************************************************/
+
+function setLocalStorageV(what, value)
+{
+	localStorage.removeItem(what);
+	localStorage.setItem(what, value);
+}
+
+
+
+</script>
+</head>
+
+<body id='body' onload="start();">
+
+<div id='container' onTouchStart="touch();" ontouchmove='touchMove(event);'>
+
+	<!-- Header -->
+
+	<div id='header'>
+	
+		<img src='clubs.png' alt='clubs' />
+		<img src='spades.png' alt='clubs' />
+		
+		<h1>Poker Timer</h1>
+		
+		<img src='hearts.png' alt='clubs' />
+		<img src='diamonds.png' alt='clubs' />
+		
+	</div>
+	
+	<!-- / End header -->
+		
+	
+	<!-- Starting screen -->
+
+	<div id='content_startingscreen'>
+	
+			<ul>
+			
+				<li class='just_one_child'>
+					
+					<label for='time'><span id='text_timePerLevel'>Time Per Level</span>:</label>
+					
+					<form name='time'>
+						<select id='selectTimePerLevel'
+						name='selectTimePerLevel' onchange="setLocalStorage('timePerLevel');">
+						
+							<option value='5' id='text_option_5minutes'>5 Minutes</option>
+							<option value='10' id='text_option_10minutes'>10 Minutes</option>
+							<option value='15' id='text_option_15minutes'>15 Minutes</option>
+							<option value='20' id='text_option_20minutes'>20 Minutes</option>
+							<option value='25' id='text_option_25minutes'>25 Minutes</option>
+							<option value='30' id='text_option_30minutes'>30 Minutes</option>
+							<option value='35' id='text_option_35minutes'>35 Minutes</option>
+							<option value='40' id='text_option_40minutes'>40 Minutes</option>
+							<option value='45' id='text_option_45minutes'>45 Minutes</option>
+							<option value='50' id='text_option_50minutes'>50 Minutes</option>
+							<option value='55' id='text_option_55minutes'>55 Minutes</option>
+							<option value='60' id='text_option_60minutes'>60 Minutes</option>
+							
+						</select>
+					</form>
+					
+				</li>
+				
+			</ul>
+					
+		<button onclick="openLink('content_startingscreen', 'content_timer'); startTheTimer();">
+			
+			<span id='text_startTimer'>Start Timer</span>
+	
+		</button>
+
+		<button onclick="openLink('content_startingscreen', 'content_settings');">
+		
+			<span id='text_settings'>Set Notification</span>
+		
+		</button>
+
+		
+		<button onclick="openLink('content_startingscreen', 'content_about');">
+			
+			<span id='text_about'>About</span>
+		
+		</button>
+				
+	</div>
+	
+	<!-- / End starting screen -->
+	
+	
+	
+	<!-- "Set Blinds"-screen -->
+
+	<div id='content_blinds' style='display: none;'>
+		
+		<h3>
+			<img src='chips.png' alt='Chipstack' />
+			<span id='text_blindlevels'>Blindlevels</span>:
+		</h3>
+				
+		<ul>
+		
+			<li id='blindsdisplay_level1'>
+				<span id='text_level_1'>Level 1</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level1Small' name='level1Small' />
+					
+					<input type='tel' id='level1Big' name='level1Big' />
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level2'>
+				<span id='text_level_2'>Level 2</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level2Small' name='level2Small' />
+					
+					<input type='tel' id='level2Big' name='level2Big' />
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level3'>
+				<span id='text_level_3'>Level 3</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level3Small' name='level3Small'/>
+					
+					<input type='tel' id='level3Big' name='level3Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level4'>
+				<span id='text_level_4'>Level 4</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level4Small' name='level4Small'/>
+					
+					<input type='tel' id='level4Big' name='level4Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level5'>
+				<span id='text_level_5'>Level 5</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level5Small' name='level5Small'/>
+					
+					<input type='tel' id='level5Big' name='level5Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level6'>
+				<span id='text_level_6'>Level 6</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level6Small' name='level6Small'/>
+					
+					<input type='tel' id='level6Big' name='level6Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level7'>
+				<span id='text_level_7'>Level 7</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level7Small' name='level7Small'/>
+					
+					<input type='tel' id='level7Big' name='level7Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level8'>
+				<span id='text_level_8'>Level 8</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level8Small' name='level8Small'/>
+					
+					<input type='tel' id='level8Big' name='level8Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level9'>
+				<span id='text_level_9'>Level 9</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level9Small' name='level9Small'/>
+					
+					<input type='tel' id='level9Big' name='level9Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level10'>
+				<span id='text_level_10'>Level 10</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level10Small' name='level10Small'/>
+					
+					<input type='tel' id='level10Big' name='level10Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level11'>
+				<span id='text_level_11'>Level 11</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level11Small' name='level11Small'/>
+					
+					<input type='tel' id='level11Big' name='level11Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level12'>
+				<span id='text_level_12'>Level 12</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level12Small' name='level12Small'/>
+					
+					<input type='tel' id='level12Big' name='level12Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level13'>
+				<span id='text_level_13'>Level 13</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level13Small' name='level13Small'/>
+					
+					<input type='tel' id='level13Big' name='level13Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level14'>
+				<span id='text_level_14'>Level 14</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level14Small' name='level14Small'/>
+					
+					<input type='tel' id='level14Big' name='level14Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level15'>
+				<span id='text_level_15'>Level 15</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level15Small' name='level15Small'/>
+					
+					<input type='tel' id='level15Big' name='level15Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level16'>
+				<span id='text_level_16'>Level 16</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level16Small' name='level16Small'/>
+					
+					<input type='tel' id='level16Big' name='level16Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level17'>
+				<span id='text_level_17'>Level 17</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level17Small' name='level17Small'/>
+					
+					<input type='tel' id='level17Big' name='level17Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level18'>
+				<span id='text_level_18'>Level 18</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level18Small' name='level18Small'/>
+					
+					<input type='tel' id='level18Big' name='level18Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level19'>
+				<span id='text_level_19'>Level 19</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level19Small' name='level19Small'/>
+					
+					<input type='tel' id='level19Big' name='level19Big'/>
+					
+				</span>
+			</li>
+		
+			<li id='blindsdisplay_level20'>
+				<span id='text_level_20'>Level 20</span>:
+				<span class='blinds'>
+				
+					<input type='tel' id='level20Small' name='level20Small'/>
+					
+					<input type='tel' id='level20Big' name='level20Big'/>
+					
+				</span>
+			</li>
+			
+			<li id='button_leveldisplay-selection'>
+				<button id='button_reset' onclick="resetAllBlinds();">Reset</button>
+				<button id='button_showLessLevels' onclick="showLessLevels();"><<</button>
+				<button id='button_showMoreLevels' onclick="showMoreLevels();">>></button>
+			</li>
+			
+		</ul>
+		
+		<button onclick="openLink('content_blinds', 'content_settings'); disableScrolling=1; saveBlinds();">
+			<span id='text_back3'>Back</span>
+		</button>
+	
+			
+	</div>
+	
+	<!-- / End Blinds -->	
+	
+	
+	
+	
+	
+	<!-- Settings screen -->
+
+	<div id='content_settings' style='display: none;'>
+		
+		<h3>
+			<img src='bell.png' alt='Bell' />
+			<span id='text_levelChangeNotification'>Level Change Notification</span>:
+		</h3>
+		
+		<form name='notifications'>
+		
+		<ul>
+		
+			<li id='specialBorder'>
+				<span id='text_beep'>Beep</span>:
+				<span class='float_right'>
+					<input type='checkbox' id='beep' name='beep' onchange="setLocalStorage('notificationBeep');"/>
+				</span>
+			</li>
+			
+			<li id='vibratefield'>
+				<span id='text_vibrate'>Vibrate</span>:
+				<span class='float_right'>
+					<input type='checkbox' id='vibrate' name='vibrate' onchange="setLocalStorage('notificationVibrate');"/>
+				</span>
+			</li>
+		
+		</ul>
+		</form>
+		
+		<button onclick="openLink('content_settings', 'content_blinds'); disableScrolling=1;">
+						
+			<span id='text_setBlinds'>Set Blinds</span>
+				
+		</button>
+			
+		<button onclick="openLink('content_settings', 'content_startingscreen');"><span id='text_back'>Back</span></button>
+	
+			
+	</div>
+	
+	<!-- / End Settings -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- About screen -->
+
+	<div id='content_about' style='display: none'>
+	
+		<ul>
+			<li><span id='text_version'>Version</span>:<span class='float_right'>1.2</span></li>
+			<li><span id='text_versionDate'>Version Date</span>:<span class='float_right'>19.06.2010</span></li>
+			<li><span id='text_author'>Author</span>:<span class='float_right'>Louis Bataillard</span></li>
+			<li><span id='text_website'>Website</span>:<span class='float_right'>
+			<a href='http://www.mobweb.ch?&ref=pl10' alt='Link to www.MobWeb.ch'>www.mobweb.ch</a></span></li>
+		</ul>
+		
+		<a href='mailto:info@mobweb.ch?Subject=Feedback%3A%20Simple%20Poker%20Blinds%20Timer'
+		title='Send me an e-Mail!'><button><span id='text_contactTheAuthor'>
+		Contact Author</span></button></a>
+		<button onclick="openLink('content_about', 'content_startingscreen');"><span id='text_back2'>Back</span></button>
+	
+			
+	</div>
+	
+	<!-- / End about -->
+	
+		
+	
+	<!-- Countdown timer screen -->
+	
+	<div id='content_timer' style='display: none;'>
+	
+		<div id="fullLayover"></div>
+		<div id="layover_confirm">
+		
+			<h2><span id="text_confirmation"></span></h2>
+			
+			<p><span id="text_really_exit"></span></p>
+			
+			<button style="width:40%;margin-right:5%;" onclick="reallyExit();" id="text_yes">Yes</button>
+			<button style="width:40%;" onclick="dontExit();" id="text_no">No</button>
+			
+		</div>
+	
+		<span id='pausedLayover'>
+		<span id='text_paused'>Paused</span><br />(<span id='pausedtime'>0m 0s</span>)
+		</span>
+	
+		<ul id='timerul'>
+			
+			<li class='timerli'><span id='text_timePerLevel2'>Time Per Level</span>:
+			<span class='float_right'><span id='timePerLevel'></span> 
+			<span id='text_minutes'>minutes</span></span></li>
+		
+			<li class='timerli'><span id='text_level'>Level</span>:
+			<button onclick="changeLevel('previous')" class="levelChangeButtons">&nbsp;-&nbsp;</button>
+			<button onclick="changeLevel('next')" class="levelChangeButtons">&nbsp;+&nbsp;</button>
+			<span class='float_right'><span id='level'>1</span></span></li>
+		
+			<li class='timerli' id='displayOfTheBlinds'><span id='text_blinds'>Blinds</span>:
+			<span class='float_right'>&nbsp;BB: <span id='bigBlind'></span></span>
+			<span class='float_right'>SB: <span id='smallBlind'></span> / </span>
+			</li>
+			
+			<li class='timerli'><span id='text_totalTime'>Total Time</span>:
+			<span class='float_right'><span id='timer'>0m 0s</span><span id='active'></span></span></li>
+			
+			<li class='timerli'><span id='text_timeToNextLevel'>Time To Next Level</span>:
+			<span class='float_right'><span id='timernextlevel'>0m 0s</span></span></span></li>
+			
+		</ul>
+		
+		<div id="hideTheseOnDim">
+			<button id='button_hidden' onclick="openLink('content_timer', 'content_settings');" >
+				<span id='text_settings2'>Settings</span>
+			</button>
+			
+			<button id='pausebutton' onclick='toggleactive();'>
+				<span id='text_pauseTimer'>Pause</span>
+			</button>
+			
+			<button id='text_gameFinished' onclick="finish_game();">
+				<span id='text_gameFinished'>Game Finished</span>
+			</button>
+		</div>
+	
+	</div>
+	
+	<!-- / End timer -->
+
+
+
+
+
+</div>
+
+</body>
+</html>
