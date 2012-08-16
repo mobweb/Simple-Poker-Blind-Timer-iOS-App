@@ -8,7 +8,7 @@ All of the code is documented right in the source.
 
 ## Links
 
-[«Simple Poker Blind Timer» on the App Store](???)
+[«Simple Poker Blind Timer» on the App Store](http://itunes.apple.com/us/app/simple-poker-blind-timer/id365693213?mt=8)
 
 ## Support
 
